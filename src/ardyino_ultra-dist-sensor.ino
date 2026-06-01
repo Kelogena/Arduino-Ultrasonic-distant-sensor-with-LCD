@@ -1,7 +1,5 @@
 #include <LiquidCrystal.h>
 
-// ВИПРАВЛЕНО: Піни ініціалізуються згідно з наданою таблицею:
-// RS=12, E=11, D4=7, D5=6, D6=5, D7=4
 LiquidCrystal lcd(12, 11, 7, 6, 5, 4);
 
 const int trigPin = 9;
@@ -20,7 +18,6 @@ void setup() {
 
   lcd.begin(16, 2);
 
-  // Стартове вітання
   lcd.print("Ultrasonic");
   lcd.setCursor(0, 1);
   lcd.print("Detector");
@@ -29,19 +26,16 @@ void setup() {
 }
 
 void loop() {
-  // Очищення тригера перед вимірюванням
+
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
 
-  // Генеруємо імпульс 10 мікросекунд
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
-  // Зчитуємо зворотний імпульс (таймаут 30мс)
   duration = pulseIn(echoPin, HIGH, 30000);
 
-  // Перевірка на відсутність сигналу (якщо об'єкт занадто далеко)
   if (duration == 0) {
     lcd.clear();
     lcd.setCursor(0, 0);
@@ -53,10 +47,9 @@ void loop() {
     return;
   }
 
-  // Розрахунок відстані в см
+
   distance = duration * 0.0343 / 2;
 
-  // Виведення результатів на дисплей
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Distance:");
@@ -65,9 +58,8 @@ void loop() {
   lcd.print(distance);
   lcd.print(" cm");
 
-  // Логіка роботи зумера (частота та затримка залежать від відстані)
   if (distance < 10) {
-    tone(buzzerPin, 2000); // Високий писк без пауз (небезпека)
+    tone(buzzerPin, 2000); 
     delay(50);
   }
   else if (distance < 20) {
@@ -75,11 +67,11 @@ void loop() {
     delay(100);
   }
   else if (distance < 50) {
-    tone(buzzerPin, 1000); // Рідкісний писк
+    tone(buzzerPin, 1000); 
     delay(300);
   }
   else {
-    noTone(buzzerPin);     // Без звуку, якщо перешкода далеко
+    noTone(buzzerPin);     
     delay(100);
   }
 }
