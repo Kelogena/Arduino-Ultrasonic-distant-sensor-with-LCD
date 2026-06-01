@@ -68,7 +68,13 @@ HC-SR04 → Arduino Uno → Output Layer
 ---
 
 ## 🔌 Wiring Diagram
+![Arduino Wiring Schematic](docs/arduino_ultrasonic_schematic.svg)
 
+## Arduino Code
+Use the code in file to get started:
+`
+ardyino_ultra-dist-sensor.ino
+`
 ### HC-SR04
 
 VCC → 5V  
