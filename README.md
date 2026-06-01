@@ -240,4 +240,4 @@ MIT License – free for educational use.
 
 ## 👨‍💻 Author
 
-Arduino ultrasonic distance measurement system for learning sensors, embedded systems, and robotics.
+Kelogena
